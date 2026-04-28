@@ -1,0 +1,4 @@
+To run server first go into the onlineStore-backend directory:
+    cd onlineStore-backend 
+Then type in this command:
+    npx json-server --watch db.json --port 5001

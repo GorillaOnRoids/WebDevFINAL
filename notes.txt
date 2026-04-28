@@ -1,0 +1,6 @@
+Buttonhover for food card
+change outline
+introduce multiple page system. 
+CR for add button, change it into       - [Quantity] +      kind of button
+Add photos for each item
+Add title photo //Logo
