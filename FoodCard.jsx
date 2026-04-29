@@ -2,7 +2,7 @@ import React from "react";
 import "./FoodCard.css"; 
 import { useState } from "react";
 
-function FoodCard({ food, onAdd }) {
+function FoodCard({ product, onAdd }) {
     const [isAdded, setIsAdded] = useState(false);
 
     const handleAdd = () => {
@@ -11,17 +11,20 @@ function FoodCard({ food, onAdd }) {
     };
 
     return (
-        <div className="food-card">
+        <div className="product-card">
+            {product.image && (
+                <img src={product.image} alt={product.name} className="product-image" />
+            )}
             <div>
-                <h2 className="food-name">{food.name}</h2>
-                {food.brand && <div className="food-brand">{food.brand}</div>}
-                {food.weight && <div className="food-weight">{food.weight}</div>}
+                <h2 className="product-name">{product.name}</h2>
+                {product.brand && <div className="product-brand">{product.brand}</div>}
+                {product.weight && <div className="product-weight">{product.weight}</div>}
             </div>
 
-            {food.description && <p className="food-description">{food.description}</p>}
+            {product.description && <p className="product-description">{product.description}</p>}
 
-            <div className="food-bottom">
-                <div className="food-price">${food.price.toFixed(2)}</div>
+            <div className="product-bottom">
+                <div className="product-price">${product.price.toFixed(2)}</div>
                 <button className="add-button" onClick={onAdd}>
                     Add
                 </button>

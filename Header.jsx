@@ -2,15 +2,43 @@ import React from "react";
 import { useState } from "react";
 import "./Header.css";
 
-function Header() {
+function Header({ onSearch }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        if (onSearch) {
+            onSearch(searchQuery);
+        }
+    };
+
+    const handleInputChange = (e) => {
+        setSearchQuery(e.target.value);
+    };
 
     return (
         <header className="main-header">
             <div className="brand-container">
-                <h1 className="brand-title">Fig's Produce</h1>
-                <p className="brand-motto">Fresh produce delivered to your door</p>
+                <img src="/src/assets/figLogo.png" alt="Fig's Produce Logo" className="brand-logo" />
+                <div className="brand-text">
+                    <h1 className="brand-title">Fig's Produce</h1>
+                    <p className="brand-motto">Fresh produce delivered to your door</p>
+                </div>
             </div>
+
+            <form className="search-container" onSubmit={handleSearch}>
+                <input
+                    type="text"
+                    className="search-input"
+                    placeholder="Search products..."
+                    value={searchQuery}
+                    onChange={handleInputChange}
+                />
+                <button type="submit" className="search-button">
+                    🔍
+                </button>
+            </form>
 
             <nav aria-label="Main navigation">
                 <ul className="nav-list">

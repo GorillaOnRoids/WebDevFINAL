@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import NavBar from './NavBar';
+import Header from './Header';
 import ShoppingCart from './ShoppingCart';
 import FoodCard from './FoodCard';
 
@@ -38,7 +38,10 @@ function App() {
 
     return (
         <div className="app-container">
-            <NavBar />
+            <Header 
+                onSearch={(q) => console.log("Searching for:", q)} 
+                cartCount={cart.length} 
+                />
             <main className="main-container">
                 <section>
                     <h2>Results</h2>

@@ -2,7 +2,8 @@
 body {
     margin: 0;
     font-family: "Segoe UI", Roboto, sans-serif;
-    background-color: #eaeded; /* Amazon light gray background */
+    background-color:hsl(120, 25%, 15%); /* Amazon light gray background */
+   
 }
 
 /* NavBar Styling */
@@ -61,7 +62,7 @@ body {
 
 /* Product Card Styling */
 .card {
-    background: white;
+    background: hsl(120, 25%, 15%);
     padding: 15px;
     border-radius: 4px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
