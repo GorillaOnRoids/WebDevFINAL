@@ -2,45 +2,7 @@
 body {
     margin: 0;
     font-family: "Segoe UI", Roboto, sans-serif;
-    background-color: #eaeded; /* Amazon light gray background */
-}
-
-/* NavBar Styling */
-.navbar {
-    background-color: #131921;
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    color: white;
-}
-
-.nav-logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #febd69; /* Amazon orange */
-    margin-right: 20px;
-}
-
-/* SearchBar Styling */
-.search-bar-container {
-    display: flex;
-    flex-grow: 1;
-    margin: 0 20px;
-}
-
-.search-bar-container input {
-    flex-grow: 1;
-    padding: 10px;
-    border: none;
-    border-radius: 4px 0 0 4px;
-}
-
-.search-bar-container button {
-    background-color: #febd69;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 0 4px 4px 0;
-    cursor: pointer;
+    background-color: #eaeded;
 }
 
 /* Main Layout */
@@ -48,63 +10,368 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+}
+
+.mission-layout {
     display: grid;
-    grid-template-columns: 3fr 1fr; /* Main products left, Cart right */
+    grid-template-columns: minmax(160px, 220px) minmax(0, 1fr) minmax(160px, 220px);
     gap: 20px;
+    align-items: start;
+}
+
+.mission-content {
+    min-width: 0;
+    background: #eff7ef;
+    border-radius: 18px;
+    padding: 32px;
+    box-shadow: 0 10px 30px rgba(2, 6, 23, 0.08);
+}
+
+.mission-header {
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.mission-header h1 {
+    margin: 0;
+    font-size: 2.4rem;
+    color: #0f4d2d;
+    font-family: 'Georgia', serif;
+    letter-spacing: 0.02em;
+}
+
+.mission-header p,
+.mission-copy p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.9;
+    color: #334155;
+    font-family: 'Verdana', sans-serif;
+}
+
+.mission-copy p {
+    margin-bottom: 16px;
+}
+
+.mission-copy p:last-child {
+    margin-bottom: 0;
+}
+
+.farm-carousel {
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(2, 6, 23, 0.08);
+    overflow: hidden;
+    position: sticky;
+    top: 20px;
+}
+
+.carousel-card {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.carousel-image {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+}
+
+.carousel-caption {
+    padding: 14px;
+    font-size: 0.95rem;
+    color: #2f4f4f;
+    background: #f4f7f6;
+    text-align: center;
 }
 
 .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 16px;
+    gap: 20px;
+    align-items: start;
 }
 
-/* Product Card Styling */
-.card {
+/* No Results Message */
+.no-results {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #666;
+    padding: 40px 20px;
     background: white;
-    padding: 15px;
-    border-radius: 4px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    border-radius: 8px;
+    margin-top: 20px;
 }
 
-.card img {
-    max-width: 100%;
-    height: 150px;
-    object-fit: contain;
+/* Products Page Heading */
+.main-container > section > h2 {
+    margin-top: 0;
+    margin-bottom: 18px;
+    font-size: 2rem;
+    color: #13612b;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
 }
 
-.add-to-cart-btn {
-    background-color: #ffd814;
-    border: 1px solid #fcd200;
-    border-radius: 20px;
-    padding: 8px;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-.add-to-cart-btn:hover { background-color: #f7ca00; }
 
 /* Shopping Cart Styling */
-.cart-aside {
+.cart-container {
     background: white;
     padding: 20px;
-    height: fit-content;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(2, 6, 23, 0.06);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.cart-container > h2 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 1.5rem;
+    color: #13612b;
+    letter-spacing: 0.02em;
+    font-weight: 700;
 }
 
 .cart-item {
     border-bottom: 1px solid #ddd;
-    padding: 10px 0;
-    font-size: 0.9rem;
+    padding: 15px 0;
+    font-size: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-item strong {
+    font-size: 1.1rem;
+    color: #13612b;
+}
+
+.cart-item-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantity-input {
+    width: 50px;
+    padding: 4px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.item-total {
+    font-weight: 600;
+    color: #0f766e;
+}
+
+.cart-total {
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-align: right;
+    color: #13612b;
+    border-top: 2px solid #e5e7eb;
+    padding-top: 15px;
 }
 
 .remove-btn {
-    background: none;
+    background: #ef4444;
+    color: white;
     border: none;
-    color: #007185;
+    padding: 6px 12px;
+    border-radius: 6px;
     cursor: pointer;
-    text-decoration: underline;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
+    transition: background 0.2s;
+}
+
+.remove-btn:hover {
+    background: #dc2626;
+}
+
+/* Continue Shopping Link */
+.continue-shopping-link {
+    color: #10b981;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 16px;
+    border: 2px solid #10b981;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+.continue-shopping-link:hover {
+    background: #10b981;
+    color: white;
+}
+
+/* Cart Header */
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.cart-header h2 {
+    margin: 0;
+    font-size: 1.9rem;
+    color: #0f4d2d;
+}
+
+.continue-shopping-link {
+    background: #eef6ec;
+    border-color: #10b981;
+    color: #0f766e;
+}
+
+.continue-shopping-link:hover {
+    background: #10b981;
+    color: white;
+}
+
+.payment-action {
+    margin-top: 24px;
+    text-align: center;
+}
+
+.payment-link {
+    display: inline-block;
+    background: #10b981;
+    color: white;
+    padding: 12px 22px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.payment-link:hover {
+    background: #0f766e;
+    transform: translateY(-1px);
+}
+
+.payment-page {
+    max-width: 700px;
+    margin: 0 auto;
+    background: white;
+    padding: 28px;
+    border-radius: 18px;
+    box-shadow: 0 12px 30px rgba(2, 6, 23, 0.08);
+}
+
+.payment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    gap: 12px;
+}
+
+.payment-header h2 {
+    margin: 0;
+    color: #0f4d2d;
+    font-size: 2rem;
+}
+
+.payment-summary {
+    margin-bottom: 24px;
+    color: #334155;
+    font-size: 1rem;
+    line-height: 1.75;
+}
+
+.payment-form {
+    display: grid;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-row {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 1fr 1fr;
+}
+
+.small-group {
+    min-width: 0;
+    max-width: 220px;
+}
+
+.payment-input {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+    font-size: 0.95rem;
+    min-height: 42px;
+}
+
+#cardNumber.payment-input {
+    letter-spacing: 0.13em;
+}
+
+.payment-submit {
+    background: #10b981;
+    color: white;
+    border: none;
+    padding: 14px 20px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.payment-submit:hover {
+    background: #0f766e;
+    transform: translateY(-1px);
+}
+
+.payment-error,
+.payment-success {
+    padding: 14px 16px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.payment-error {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.payment-success {
+    background: #dcfce7;
+    color: #166534;
+}
+
+@media (max-width: 760px) {
+    .payment-header,
+    .form-row {
+        flex-direction: column;
+        display: flex;
+    }
+}
+
+@media (max-width: 980px) {
+    .mission-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .farm-carousel {
+        position: relative;
+        top: auto;
+    }
 }

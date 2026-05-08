@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import NavBar from './NavBar';
-import ShoppingCart from './ShoppingCart';
-import FoodCard from './FoodCard';
+import Header from './Header';
+import ProductsPage from './ProductsPage';
+import MissionPage from './MissionPage';
+import CartPage from './CartPage';
+import ProductInfo from './ProductInfo';
+import PaymentPage from './PaymentPage';
+import { CartProvider } from './CartContext';
 
 function App() {
     const [products, setProducts] = useState([]);
-    const [cart, setCart] = useState([]);
+    const [searchQuery, setSearchQuery] = useState('');
     const API_URL = 'http://localhost:5001/products';
 
     useEffect(() => {
@@ -16,47 +21,61 @@ function App() {
             .catch((err) => console.error('Failed to load products', err));
     }, []);
 
-    const addToCart = (product) => {
-        setCart((prev) => {
-            const found = prev.find((p) => p.id === product.id);
-            if (found) {
-                return prev.map((p) => (p.id === product.id ? { ...p, qty: p.qty + 1 } : p));
-            }
-            return [...prev, { ...product, qty: 1 }];
-        });
-    };
+    // Filter products based on search query
+    const filteredProducts = products.filter(product => {
+        if (!searchQuery) return true;
+        
+        const query = searchQuery.toLowerCase();
+        return (
+            product.name.toLowerCase().includes(query) ||
+            (product.brand && product.brand.toLowerCase().includes(query)) ||
+            (product.description && product.description.toLowerCase().includes(query))
+        );
+    });
 
-    const removeFromCart = (id) => {
-        setCart((prev) => prev.filter((p) => p.id !== id));
+    const handleSearch = (query) => {
+        setSearchQuery(query);
     };
-
-    const updateQty = (id, qty) => {
-        setCart((prev) => prev.map((p) => (p.id === id ? { ...p, qty: Math.max(1, qty) } : p)));
-    };
-
-    const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
 
     return (
-        <div className="app-container">
-            <NavBar />
-            <main className="main-container">
-                <section>
-                    <h2>Results</h2>
-                    <div className="product-grid">
-                        {products.map((p) => (
-                            <FoodCard key={p.id} product={p} onAdd={() => addToCart(p)} />
-                        ))}
-                    </div>
-                </section>
-
-                <ShoppingCart 
-                    cart={cart} 
-                    removeFromCart={removeFromCart} 
-                    updateQty={updateQty} 
-                    total={total} 
+        <CartProvider>
+            <Router>
+                <div className="app-container">
+                    <Header
+                        onSearch={handleSearch}
+                    currentSearchQuery={searchQuery}
+                    totalProducts={products.length}
+                    filteredProductsCount={filteredProducts.length}
                 />
-            </main>
-        </div>
+                <Routes>
+                    <Route
+                        path="/"
+                        element={
+                            <ProductsPage
+                                products={filteredProducts}
+                            />
+                        }
+                    />
+                    <Route
+                        path="/mission"
+                        element={<MissionPage />}
+                    />
+                    <Route
+                        path="/cart"
+                        element={
+                            <CartPage
+                            />
+                        }
+                    />
+                    <Route
+                        path="/payment"
+                        element={<PaymentPage />}
+                    />
+                    <Route path="/product/:id" element={<ProductInfo />} />
+                </Routes>
+            </div>
+        </Router>
+        </CartProvider>
     );
 }
 
